@@ -8,3 +8,42 @@
 .card{
   width:250px
 }
+
+.brand-check{
+  width:18px;
+  cursor: pointer;
+}
+
+.list-group-item{
+  padding: 0.7rem !important;
+}
+
+.sort-btn{
+  width:20px !important;
+  padding:1.5rem;
+}
+
+.layout-mode{
+  width:80px;
+  height:28px;
+  border:2px solid gray;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  cursor: pointer;
+ }
+ 
+.active .layout-box{
+  background-color: #1e90ff;
+}
+
+.layout-wide{
+  width: 90px;
+}
+
+.layout-box{
+  width:13px;
+  height:13px;
+  padding: 3px;
+  background-color: gray;
+}
