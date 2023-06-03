@@ -6,9 +6,6 @@ import { CartContext } from '../contexts/CartContext';
 export function ProductDetail({product}){
 
     const {setCart, addToCart} = useContext(CartContext);
-
-
-
     product = product[0];
 
     return(

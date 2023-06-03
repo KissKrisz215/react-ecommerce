@@ -5,9 +5,8 @@ import { CartContext } from "../contexts/CartContext";
 
 export function CheckOutPage(){
 
-    const {cart} = useContext(CartContext)
+    const {cart, changeCart, deleteProduct, finalPrice} = useContext(CartContext)
 
-    console.log(cart);
     return(
         <>
             <Navbar />
@@ -21,16 +20,20 @@ export function CheckOutPage(){
                     <p className="card-text">{item.description}</p>
                     <div>
                     <label className="fw-bold me-2 fs-5" htmlFor="">Quantity:</label>
-                    <input type="number"  style={{width: "80px"}} value={item.id} />
+                    <input onChange={(event) => changeCart(event,item.id)} type="number"  style={{width: "80px"}} value={item.quantity} />
+                    <p className="fw-bold fs-5 mt-2">Price: <span className="text-yellow fs-3">${(item.quantity * item.price).toFixed(0)}</span></p>
                     </div>
                 </div>
                 <div className="w-50 d-flex justify-content-end align-items-center px-5">
                 <div>
-                    <button className="btn btn-danger fs-5"> Delete</button>
+                    <button  onClick={() => deleteProduct(item.id)} className="btn btn-danger fs-5"> Delete</button>
                     </div>
                 </div>
                 </div>
              ))}
+             <div>
+                {finalPrice && <h5 className="fs-2 fw-bold text-end">Final Balance:</h5>}
+             </div>
              </div>
             <Footer />
         </>
