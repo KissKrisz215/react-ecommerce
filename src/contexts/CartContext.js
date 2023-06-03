@@ -15,9 +15,11 @@ export const CartProvider = ({children}) => {
             const product = cartCopy.find((product) => product.id === item.id);
             if(product){
                 product.quantity += 1;
+                product.final = product.quantity * product.price;
                 setCart(cartCopy);
             }}else if(doesIncludes === undefined){
                 item.quantity = 1;
+                item.final = item.quantity * item.price;
                 cartCopy.push(item)
                 setCart(cartCopy)
             }

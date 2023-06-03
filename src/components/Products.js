@@ -3,12 +3,9 @@ import { useState } from 'react';
 import { Product } from './Product';
 import { nanoid } from 'nanoid';
 
-export function Products({searchValue, setSearchValue}){
+export function Products({searchValue, setSearchValue, currentPage}){
 
-    const [productsPages, setProductsPages ] = useState(phones.length / 12)
     const [productPerPage, setProductPerPage] = useState(12);
-    const [currentPage, setCurrentPage] = useState(0);
-
 
     const indexOfLastProducts = currentPage * productPerPage;
     const indexOfFirstProducts = indexOfLastProducts + productPerPage;

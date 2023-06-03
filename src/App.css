@@ -86,3 +86,8 @@
 .cart-card{
   display: flex !important;
 }
+
+.checkout-cart{
+  max-height: 100vh;
+  overflow: scroll;
+}
