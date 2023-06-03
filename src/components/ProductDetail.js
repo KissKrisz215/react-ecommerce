@@ -1,9 +1,16 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { useContext } from 'react';
+import { CartContext } from '../contexts/CartContext';
 
 export function ProductDetail({product}){
+
+    const {setCart, addToCart} = useContext(CartContext);
+
+
+
     product = product[0];
-    
+
     return(
         <div className="container py-5">
           <div className="row border border-2 rounded-2">
@@ -46,7 +53,7 @@ export function ProductDetail({product}){
                     <p>{product.battery}</p>
                 </div>
                 <div>
-                    <button className='btn btn-outline-primary fs-4'><FontAwesomeIcon className="fs-5" icon={faCartShopping} /> Add To Cart</button>
+                    <button onClick={() => addToCart(product)} className='btn btn-outline-primary fs-4'><FontAwesomeIcon className="fs-5" icon={faCartShopping} /> Add To Cart</button>
                 </div>
             </div>
           </div>

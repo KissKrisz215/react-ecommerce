@@ -82,3 +82,7 @@
 .text-yellow{
   color: #ffc107;
 }
+
+.cart-card{
+  display: flex !important;
+}

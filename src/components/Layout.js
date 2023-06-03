@@ -13,8 +13,8 @@ export function Layout({layout, setLayout}){
 
     return(
         <div>
-        <div class="card w-100">
-        <div class="card-header py-3 d-flex justify-content-end d-flex gap-2">
+        <div className="card w-100">
+        <div className="card-header py-3 d-flex justify-content-end d-flex gap-2">
          <label htmlFor="">Change Layout:</label>
          <div className="d-flex gap-2">
         <div onClick={changeLayoutSmall} className={layout ? "layout-mode active" : "layout-mode"}>
