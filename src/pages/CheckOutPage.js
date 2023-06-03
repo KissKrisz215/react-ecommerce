@@ -32,7 +32,7 @@ export function CheckOutPage(){
                 </div>
              ))}
              <div>
-                {finalPrice && <h5 className="fs-2 fw-bold text-end">Final Balance:</h5>}
+                {finalPrice && <h5 className="fs-2 fw-bold text-end">Final Balance: {finalPrice && <span className="text-yellow fs-2">${finalPrice.toFixed(0)}</span>}</h5>}
              </div>
              </div>
             <Footer />

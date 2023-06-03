@@ -11,7 +11,7 @@ export function ProductsList(){
   const [searchValue, setSearchValue] = useState([]);
   const [sorting, setSorting] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
-  const [productsPages, setProductsPages ] = useState(Array.from({length: phones.length / 12}, (_, index) => index + 1));
+  const [productsPages, setProductsPages ] = useState(Array.from({length: Math.ceil(phones.length / 12)}, (_, index) => index + 1));
   
   const changePage = (page) => {
     setCurrentPage(page);
@@ -25,13 +25,13 @@ export function ProductsList(){
          <Products searchValue={searchValue} setSearchValue={setSearchValue} currentPage={currentPage} productsPages={productsPages} />
          <div className="d-flex justify-content-end">
          <div className="btn-group" role="group" aria-label="Basic example">
-          <button type="button" className="btn btn-light bg-transparent border">Previous</button>
+          <button type="button" className={currentPage + 1 === productsPages[0] ? "btn btn-light bg-transparent border" : "btn btn-primary border"}>Previous</button>
           {productsPages.map((item,index) => {
             return(
               <button key={item} onClick={() => changePage(item - 1)} type="button" className={currentPage === item - 1 ? "btn btn-primary border" : "btn btn-light border" }>{item}</button>
             );
           })}
-          <button type="button" className="btn btn-light bg-transparent border">Next</button>
+          <button type="button" className={currentPage + 1 === productsPages[productsPages.length - 1] ? "btn btn-light bg-transparent border" : "btn btn-primary border"}>Next</button>
         </div>
          </div>
          </div>

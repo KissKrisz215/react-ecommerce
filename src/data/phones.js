@@ -358,6 +358,7 @@ const phones = [{
     "memory": "16GB, 32GB and RAM 1 GB",
     "id": 23,
     "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!"
-}]
+}
+]
 
 export default phones

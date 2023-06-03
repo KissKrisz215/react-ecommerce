@@ -1,4 +1,4 @@
-import React, {createContext, useState} from 'react';
+import React, {createContext, useEffect, useState} from 'react';
 
 export const CartContext = createContext();
 
@@ -6,7 +6,9 @@ export const CartProvider = ({children}) => {
     const [cart, setCart] = useState([]);
     const [finalPrice, setFinalPrice] = useState(null);
 
-    console.log(cart);
+    useEffect(() => {
+        countBalance();
+    }, [cart])
 
     const addToCart = (item) => {
         const doesIncludes = cart.find((product) => product.id === item.id);
@@ -44,7 +46,18 @@ export const CartProvider = ({children}) => {
             setCart(filteredArray)
         }
 
-
+        const countBalance = () => {
+            const cartCopy = JSON.parse(JSON.stringify(cart))
+            let sum = 0;
+            if(cartCopy.length === 0){
+                setFinalPrice(null)
+            }else{
+                cartCopy.forEach((item) => {
+                    sum += item.price * item.quantity;
+                    setFinalPrice(sum);
+                })
+            }
+        }
     return(
         <CartContext.Provider value={{cart, setCart, addToCart, changeCart, deleteProduct, finalPrice}}>
             {children}
