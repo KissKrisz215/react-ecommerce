@@ -12,9 +12,16 @@ export function ProductsList(){
   const [sorting, setSorting] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
   const [productsPages, setProductsPages ] = useState(Array.from({length: Math.ceil(phones.length / 12)}, (_, index) => index + 1));
-  
+
   const changePage = (page) => {
-    setCurrentPage(page);
+    if(page === "prev" && currentPage + 1 !== productsPages[0]){
+      console.log(currentPage)
+      setCurrentPage((prevValue) => prevValue - 1);
+    }else if(page === "next" && (currentPage + 1) >! productsPages.length){
+      setCurrentPage((prevValue) => prevValue + 1);
+    }else{
+      setCurrentPage(page);
+    }
   }
 
     return(
@@ -25,13 +32,13 @@ export function ProductsList(){
          <Products searchValue={searchValue} setSearchValue={setSearchValue} currentPage={currentPage} productsPages={productsPages} />
          <div className="d-flex justify-content-end">
          <div className="btn-group" role="group" aria-label="Basic example">
-          <button type="button" className={currentPage + 1 === productsPages[0] ? "btn btn-light bg-transparent border" : "btn btn-primary border"}>Previous</button>
+          <button onClick={() => changePage("prev")} type="button" className={currentPage + 1 === productsPages[0] ? "btn btn-light bg-transparent border" : "btn btn-primary border"}>Previous</button>
           {productsPages.map((item,index) => {
             return(
               <button key={item} onClick={() => changePage(item - 1)} type="button" className={currentPage === item - 1 ? "btn btn-primary border" : "btn btn-light border" }>{item}</button>
             );
           })}
-          <button type="button" className={currentPage + 1 === productsPages[productsPages.length - 1] ? "btn btn-light bg-transparent border" : "btn btn-primary border"}>Next</button>
+          <button onClick={() => changePage("next")} type="button" className={currentPage + 1 === productsPages[productsPages.length - 1] ? "btn btn-light bg-transparent border" : "btn btn-primary border"}>Next</button>
         </div>
          </div>
          </div>

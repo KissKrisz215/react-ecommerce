@@ -91,3 +91,11 @@
   max-height: 100vh;
   overflow: scroll;
 }
+
+.vh-85{
+ min-height:85vh !important;
+}
+
+.icon-large{
+  font-size: 15rem;
+}

@@ -2,16 +2,23 @@ import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { useContext } from "react";
 import { CartContext } from "../contexts/CartContext";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBan } from "@fortawesome/free-solid-svg-icons";
 
 export function CheckOutPage(){
 
     const {cart, changeCart, deleteProduct, finalPrice} = useContext(CartContext)
 
     return(
-        <>
+        <div>
             <Navbar />
-            {cart.length === 0 && <h1>Your Cart is Empty .....</h1>}
-            <div className="d-flex flex-column gap-3 align-items-around container checkout-cart">
+            {cart.length === 0 && 
+            <div className="text-center">
+            <h1 className="text-muted">Please Add Items To Your Cart</h1>
+            <FontAwesomeIcon className="icon-large" icon={faBan} />
+            </div>
+             }
+            <div className="d-flex flex-column gap-3 align-items-around container checkout-cart vh-85 my-4">
              {cart.map((item) => (
                 <div key={item.id} className=" w-100 cart-card d-flex border gap-3 py-3">
                 <img  src={item.images[0]} alt="Card image cap" style={{width:"100px"}} />
@@ -36,6 +43,6 @@ export function CheckOutPage(){
              </div>
              </div>
             <Footer />
-        </>
+        </div>
     );
 }
