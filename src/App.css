@@ -47,3 +47,38 @@
   padding: 3px;
   background-color: gray;
 }
+
+.product-image{
+  width:225px !important;
+  height:325px !important;
+}
+
+.product-cover{
+  width:425px;
+  height:600px;
+}
+
+.product-container:hover button{
+   display: block !important;
+   transition-property: all;
+   transition-duration: 1s;
+}
+
+.product-container:hover{
+  background-color: white;
+  cursor: pointer;
+}
+
+.product-container{
+  height:670px;
+}
+
+.btn-lightblue{
+    color: #fff !important;
+    background-color: #17a2b8 !important;
+    border-color: #17a2b8 !important;
+}
+
+.text-yellow{
+  color: #ffc107;
+}

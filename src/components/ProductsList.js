@@ -8,9 +8,9 @@ export function ProductsList(){
   const [layout, setLayout] = useState(true);
 
     return(
-       <div className="d-flex gap-2 container my-5">
+       <div className="d-flex gap-5 container my-5">
          <Search />
-        <div className="w-100">
+        <div className="w-100 d-flex flex-column gap-4">
          <Layout layout={layout} setLayout={setLayout} />
          <Products />
          </div>

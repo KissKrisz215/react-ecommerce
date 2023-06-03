@@ -1,4 +1,5 @@
 import brands from '../data/brands'
+import phones from '../data/phones'
 import { nanoid } from 'nanoid';
 
 export function Search(){
@@ -9,14 +10,19 @@ export function Search(){
             Brands
         </div>
         <ul class="list-group list-group-flush">
-        {brands.map((item) => (
+        {brands.map((item) => {
+
+            const numberOfItems =  phones.filter((product) => product.brand.toLowerCase() === item.toLowerCase()).length;
+            return(
             <li key={nanoid()} className="list-group-item fs-5 d-flex gap-2">
             <input type="checkbox" className="brand-check" />
-            <div>
-            {item[0].toUpperCase() + item.slice(1)}
+            <div className='d-flex gap-1'>
+            <p>{item[0].toUpperCase() + item.slice(1)}</p>
+            <p>({numberOfItems})</p>
             </div>
             </li>
-        ))}
+            );
+        })}
         </ul>
         </div>
         <div>

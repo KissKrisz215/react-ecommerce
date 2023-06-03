@@ -1,4 +1,4 @@
-export const phones = [{
+const phones = [{
     "title": "Apple iPhone 7 Plus 32 GB (Apple Türkiye Garantili)",
     "category": "phone",
     "images": ["https://productimages.hepsiburada.net/s/18/280-413/9801258663986.jpg?v1", "https://productimages.hepsiburada.net/s/18/280-413/9801258696754.jpg?v1", "https://productimages.hepsiburada.net/s/18/280-413/9801258729522.jpg?v1", "https://productimages.hepsiburada.net/s/18/280-413/9801258762290.jpg?v1"],
@@ -359,3 +359,5 @@ export const phones = [{
     "id": 23,
     "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!"
 }]
+
+export default phones
