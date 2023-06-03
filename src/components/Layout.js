@@ -1,14 +1,13 @@
-export function Layout({layout, setLayout}){
+import { useContext } from "react";
+import { LayoutContext } from "../contexts/LayoutContext";
 
-    const changeLayoutSmall = () => {
-        setLayout(true)
-        console.log("clicked small")
-    }
+export function Layout(){
 
-    const changeLayoutWide = () => {
-        setLayout(false)
-        console.log("clicked larger")
-        console.log(layout)
+    const {layout, setLayout} = useContext(LayoutContext);
+
+    const setLayoutSize = (size) => {
+      setLayout(size);
+      console.log(layout)
     }
 
     return(
@@ -17,7 +16,7 @@ export function Layout({layout, setLayout}){
         <div className="card-header py-3 d-flex justify-content-end d-flex gap-2">
          <label htmlFor="">Change Layout:</label>
          <div className="d-flex gap-2">
-        <div onClick={changeLayoutSmall} className={layout ? "layout-mode active" : "layout-mode"}>
+        <div onClick={() => setLayoutSize("small")} className={layout === "small" ? "layout-mode active" : "layout-mode"}>
           <div className="layout-box">
           </div>
           <div className="layout-box">
@@ -25,7 +24,7 @@ export function Layout({layout, setLayout}){
           <div className="layout-box">
           </div>
         </div>
-        <div onClick={changeLayoutWide} className={layout ? "layout-mode mode" : "layout-mode active"}>
+        <div onClick={() => setLayoutSize("large")} className={layout === "large" ? "layout-mode mode active" : "layout-mode "}>
           <div className="layout-box">
           </div>
           <div className="layout-box">

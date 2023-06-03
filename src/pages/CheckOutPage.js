@@ -21,7 +21,7 @@ export function CheckOutPage(){
             <div className="d-flex flex-column gap-3 align-items-around container checkout-cart vh-85 my-4">
              {cart.map((item) => (
                 <div key={item.id} className=" w-100 cart-card d-flex border gap-3 py-3">
-                <img  src={item.images[0]} alt="Card image cap" style={{width:"100px"}} />
+                <img  src={item.images[0]} alt="Card image cap" style={{width:"150px"}} />
                 <div>
                      <h5>{item.title}</h5>
                     <p className="card-text">{item.description}</p>

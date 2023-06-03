@@ -99,3 +99,15 @@
 .icon-large{
   font-size: 15rem;
 }
+
+.grid-container-small{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap:1rem;
+}
+
+.grid-container-large{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap:1rem;
+}
