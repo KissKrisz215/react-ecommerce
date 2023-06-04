@@ -8,7 +8,7 @@ export const SearchContext = createContext();
 export const SearchProvider = ({children}) => {
 
     const [search, setSearch] = useState([]);
-    const [price, setPrice] = useState(true);
+    const [sort, setSort] = useState(null);
     const {productsList, setProductsList} = useContext(ProductsContext);
 
     useEffect(() => {
@@ -22,8 +22,24 @@ export const SearchProvider = ({children}) => {
         }
     }, [search])
 
+    useEffect(() => {
+        console.log("sorted !!!!!!!!!!")
+        if(sort === null){
+            setProductsList((prevProducts) => prevProducts);
+        }else if(sort === true){
+            const productsListCopy = JSON.parse(JSON.stringify(productsList));
+            const sortedProducts = productsListCopy.sort((a,b) => a.price - b.price);
+            setProductsList(sortedProducts)
+        }else if(sort === false){
+            const productsListCopy = JSON.parse(JSON.stringify(productsList));
+            const sortedProducts = productsListCopy.sort((a,b) => b.price - a.price);
+            setProductsList(sortedProducts)
+        }
+
+    }, [sort]);
+
     return(
-        <SearchContext.Provider value={{search, setSearch}}>
+        <SearchContext.Provider value={{search, setSearch, sort, setSort}}>
             {children}
         </SearchContext.Provider>
     );

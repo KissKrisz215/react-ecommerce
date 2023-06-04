@@ -2,13 +2,26 @@ import brands from '../data/brands'
 import phones from '../data/phones';
 import { nanoid } from 'nanoid';
 import { CheckBox } from './CheckBox';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { ProductsContext } from '../contexts/ProductsContext';
 import { SearchContext } from '../contexts/SearchContext';
 
 export function Search({ sorting, setSorting}){
     const {productsList, setProductsList} = useContext(ProductsContext)
-    const {price, setPrice} = useContext(SearchContext);
+    const {sort,setSort} = useContext(SearchContext);
+    console.log(sort);
+
+    const removeSort = () => {
+        setSort(null);
+    }
+
+    const sortProducts = (event) => {
+        if(event.target.value === 'true'){
+            setSort(true);
+        }else if(event.target.value === 'false'){
+            setSort(false)
+        }
+    }
 
     return(
        <div className='d-flex flex-column gap-3'>
@@ -37,19 +50,19 @@ export function Search({ sorting, setSorting}){
         <div className="card-header fw-bold fs-3 py-3 d-flex gap-3 text-dark">
             Price
             <div>
-            {price ? null : <button className='btn btn-primary'>Remove Filters</button>}
+            {sort === null ? null : <button className='btn btn-primary' onClick={removeSort}>Remove Filters</button>}
             </div>
         </div>
         <ul className="list-group list-group-flush">
        <li className="list-group-item fs-5">
-       <input type="radio" name="sort" id="ascending" className='sort-btn' />
+       <input onChange={(event) => sortProducts(event)} type="radio" value={true} name="sort" id="ascending" className='sort-btn' checked={sort === true ? true : false} />
         <label htmlFor="ascending">Low to high</label>
         </li>
         <li className="list-group-item fs-5"> 
-        <input type="radio" name="sort" id="descending" className='sort-btn'  />
+        <input onChange={(event) => sortProducts(event)} type="radio" value={false} name="sort" id="descending" className='sort-btn' checked={sort === false ? true : false}  />
         <label htmlFor="descending">High to low</label>
         </li>
-        </ul>
+        </ul>r
         </div>
         </div>
        </div>
