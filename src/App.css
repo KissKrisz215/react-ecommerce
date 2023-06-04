@@ -58,7 +58,7 @@
   height:600px;
 }
 
-.product-container:hover button{
+.product-list:hover button{
    display: block !important;
    transition-property: all;
    transition-duration: 1s;
@@ -70,7 +70,7 @@
 }
 
 .product-container{
-  height:670px;
+  min-height:640px;
 }
 
 .btn-lightblue{

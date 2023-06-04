@@ -16,14 +16,12 @@ export const SearchProvider = ({children}) => {
                 setProductsList(phones)
         }else{
             const productsListCopy = JSON.parse(JSON.stringify(phones));
-            console.log("executed", productsList);
             const filterProducts = productsListCopy.filter((item) => search.includes(item.brand));
             setProductsList(filterProducts)
         }
     }, [search])
 
     useEffect(() => {
-        console.log("sorted !!!!!!!!!!")
         if(sort === null){
             setProductsList(phones)
             const searchCopy = [...search];

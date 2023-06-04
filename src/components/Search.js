@@ -9,7 +9,6 @@ import { SearchContext } from '../contexts/SearchContext';
 export function Search({ sorting, setSorting}){
     const {productsList, setProductsList} = useContext(ProductsContext)
     const {sort,setSort} = useContext(SearchContext);
-    console.log(sort);
 
     const removeSort = () => {
         setSort(null);
@@ -62,7 +61,7 @@ export function Search({ sorting, setSorting}){
         <input onChange={(event) => sortProducts(event)} type="radio" value={false} name="sort" id="descending" className='sort-btn' checked={sort === false ? true : false}  />
         <label htmlFor="descending">High to low</label>
         </li>
-        </ul>r
+        </ul>
         </div>
         </div>
        </div>
