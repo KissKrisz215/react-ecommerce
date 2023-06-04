@@ -7,7 +7,6 @@ export function Layout(){
 
     const setLayoutSize = (size) => {
       setLayout(size);
-      console.log(layout)
     }
 
     return(

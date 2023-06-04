@@ -1,27 +1,27 @@
 import { useState, useEffect } from "react";
+import { useContext } from "react";
+import { SearchContext } from "../contexts/SearchContext";
 
 export function CheckBox({product,setSearchValue,searchValue}){
+    const {search, setSearch, filterProducts} = useContext(SearchContext)
 
-    const [isChecked, setIsChecked] = useState(true);
 
     const handleIsChecked = (event) => {
-      setIsChecked(!isChecked);
-      // console.log(isChecked);
+      const isChecked = event.target.checked;
       const name = event.target.name;
-      const arrayCopy = [...searchValue];
-      if(isChecked === false){
+      const arrayCopy = [...search];
+      if (isChecked === false) {
         const filteredArray = arrayCopy.filter((item) => item !== name);
-        setSearchValue(filteredArray);
-      }else if(isChecked === true && arrayCopy.includes(name) === false){
-       arrayCopy.push(name);
-       setSearchValue(arrayCopy);
+        setSearch(filteredArray);
+      } else if (isChecked === true && arrayCopy.includes(name) === false) {
+        arrayCopy.push(name);
+        setSearch(arrayCopy);
       }
-    console.log(searchValue);
     }
 
     return(
         <>
-    <input onChange={(event) => handleIsChecked(event)} name={product} type="checkbox" className="brand-check" checked={isChecked} />
+    <input onChange={(event) => handleIsChecked(event)} name={product} type="checkbox" className="brand-check" checked={search.includes(product) ? true : false}/>
         </>
     );
 }

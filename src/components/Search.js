@@ -1,10 +1,15 @@
 import brands from '../data/brands'
-import phones from '../data/phones'
+import phones from '../data/phones';
 import { nanoid } from 'nanoid';
 import { CheckBox } from './CheckBox';
+import { useContext } from 'react';
+import { ProductsContext } from '../contexts/ProductsContext';
+import { SearchContext } from '../contexts/SearchContext';
 
-export function Search({searchValue, setSearchValue, sorting, setSorting}){
-    
+export function Search({ sorting, setSorting}){
+    const {productsList, setProductsList} = useContext(ProductsContext)
+    const {price, setPrice} = useContext(SearchContext);
+
     return(
        <div className='d-flex flex-column gap-3'>
         <div className="card">
@@ -17,7 +22,7 @@ export function Search({searchValue, setSearchValue, sorting, setSorting}){
             const numberOfItems =  phones.filter((product) => product.brand.toLowerCase() === item.toLowerCase()).length;
             return(
             <li key={nanoid()} className="list-group-item fs-5 d-flex gap-2">
-            <CheckBox  product={item} setSearchValue={setSearchValue} searchValue={searchValue} />
+            <CheckBox  product={item} />
             <div className='d-flex gap-1'>
             <p>{item[0].toUpperCase() + item.slice(1)}</p>
             <p>({numberOfItems})</p>
@@ -29,8 +34,11 @@ export function Search({searchValue, setSearchValue, sorting, setSorting}){
         </div>
         <div>
         <div className="card">
-        <div className="card-header fw-bold fs-3 py-3">
+        <div className="card-header fw-bold fs-3 py-3 d-flex gap-3 text-dark">
             Price
+            <div>
+            {price ? null : <button className='btn btn-primary'>Remove Filters</button>}
+            </div>
         </div>
         <ul className="list-group list-group-flush">
        <li className="list-group-item fs-5">

@@ -1,16 +1,22 @@
 import { Products } from "./Products";
 import { Search } from "./Search";
 import { Layout } from "./Layout"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import brands from "../data/brands";
-import phones from "../data/phones";
 import { LayoutProvider } from "../contexts/LayoutContext";
+import { ProductsContext } from "../contexts/ProductsContext"
+import { useContext } from "react";
+import { SearchProvider } from "../contexts/SearchContext";
 
 export function ProductsList(){
-  const [searchValue, setSearchValue] = useState([]);
+  const {productsList, setProductsList} = useContext(ProductsContext)
   const [sorting, setSorting] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
-  const [productsPages, setProductsPages ] = useState(Array.from({length: Math.ceil(phones.length / 12)}, (_, index) => index + 1));
+  const [productsPages, setProductsPages ] = useState(Array.from({length: Math.ceil(productsList.length / 12)}, (_, index) => index + 1)); 
+
+   useEffect(() => {
+    setProductsPages(Array.from({length: Math.ceil(productsList.length / 12)}, (_, index) => index + 1))
+   }, [productsList]);
 
   const changePage = (page) => {
     if(page === "prev" && (currentPage - 1 >= 0) === true){
@@ -26,11 +32,12 @@ export function ProductsList(){
 
     return(
       <LayoutProvider>
+      <SearchProvider>
        <div className="d-flex gap-5 container my-5">
-         <Search sorting={sorting} setSorting={setSorting} searchValue={searchValue} setSearchValue={setSearchValue}  />
+         <Search sorting={sorting} setSorting={setSorting}  />
         <div className="w-100 d-flex flex-column gap-4">
          <Layout />
-         <Products searchValue={searchValue} setSearchValue={setSearchValue} currentPage={currentPage} productsPages={productsPages} />
+         <Products currentPage={currentPage} productsPages={productsPages} />
          <div className="d-flex justify-content-end">
          <div className="btn-group" role="group" aria-label="Basic example">
           <button onClick={() => changePage("prev")} type="button" className={currentPage + 1 === productsPages[0] ? "btn btn-light bg-transparent border" : "btn btn-primary border"}>Previous</button>
@@ -44,6 +51,7 @@ export function ProductsList(){
          </div>
          </div>
        </div>
+       </SearchProvider>
        </LayoutProvider>
     );
 }

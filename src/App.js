@@ -8,10 +8,12 @@ import {ErrorPage} from './pages/ErrorPage'
 import { Route, Routes } from 'react-router-dom';
 import { useState } from 'react';
 import { CartProvider } from './contexts/CartContext';
+import { ProductsProvider } from './contexts/ProductsContext';
 
 function App() {
   return (
     <div className="App">
+    <ProductsProvider>
     <CartProvider>
    <Routes>
       <Route path="/" element={<HomePage />} />
@@ -20,6 +22,7 @@ function App() {
       <Route path="*" element={<ErrorPage />}></Route>
       </Routes>
       </CartProvider>
+      </ProductsProvider>
     </div>
   );
 }
