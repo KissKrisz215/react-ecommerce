@@ -25,7 +25,9 @@ export const SearchProvider = ({children}) => {
     useEffect(() => {
         console.log("sorted !!!!!!!!!!")
         if(sort === null){
-            setProductsList((prevProducts) => prevProducts);
+            setProductsList(phones)
+            const searchCopy = [...search];
+            setSearch(searchCopy);
         }else if(sort === true){
             const productsListCopy = JSON.parse(JSON.stringify(productsList));
             const sortedProducts = productsListCopy.sort((a,b) => a.price - b.price);
